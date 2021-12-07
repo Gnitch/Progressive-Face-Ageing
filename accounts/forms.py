@@ -8,14 +8,14 @@ class UserRegisterForm(UserCreationForm):
     error_messages = {
         'password_mismatch': "Passwords do not match!",
         'email_exist':'Email Exists!',
-        'user_exist':'Username Exists!'
     }
     class Meta :
         model = User
-        fields = ['username','email','password1','password2']
+        fields = ['first_name', 'last_name', 'email', 'password1', 'password2']
 
     def clean(self):             
-        username = self.cleaned_data.get('username')
+        first_name = self.cleaned_data.get('first_name')
+        last_name = self.cleaned_data.get('last_name')
         email = self.cleaned_data.get('email')
         password1 = self.cleaned_data.get('password1')        
         password2 = self.cleaned_data.get('password2')
@@ -29,12 +29,6 @@ class UserRegisterForm(UserCreationForm):
             raise forms.ValidationError(
                 self.error_messages['email_exist'],
                 code='email_exist'
-            )        
-        
-        if User.objects.filter(username=username).exists():
-            raise forms.ValidationError(
-                self.error_messages['user_exist'],
-                code='user_exist'
-            )            
+            )                         
 
         return self.cleaned_data
