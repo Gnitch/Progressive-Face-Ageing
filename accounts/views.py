@@ -18,7 +18,7 @@ def register(request):
             context = {'error':list(errors)[0]}           
             return render(request,'accounts/register.html',context) 
         
-    return render(request,'accounts/base.html')
+    return render(request,'accounts/register.html')
 
 @redirect_if_auth('/')
 def login(request):

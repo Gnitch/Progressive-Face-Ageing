@@ -41,7 +41,7 @@ top:0;
 left:0;
 right:0;
 bottom:0;
-background-image: url("images/bg-1.svg");
+/* background-image: url("images/bg-1.svg"); */
 background-position: center center;
 background-size: cover;
 background-repeat: no-repeat;
@@ -156,7 +156,7 @@ color:var(--black-color);
             <input type="email" name='email' placeholder="Email" required="">
         </div>
         <div class="form-group">
-            <input type="password" name='pwd' placeholder="Password" required="">
+            <input type="password" name='password' placeholder="Password" required="">
         </div>
         <div class="forget-password">
             <div class="check-box">
@@ -167,7 +167,7 @@ color:var(--black-color);
         </div>
         <button type="submit" class="btn">LOGIN</button>
         <div class="account-exist">
-            Create New a account? <a href="../register" id="signup">Signup</a>
+            Create New a account? <a href="{% url 'accounts:register' %}" id="signup">Signup</a>
         </div>
     </div>
     </form>
