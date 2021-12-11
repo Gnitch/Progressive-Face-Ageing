@@ -3,7 +3,6 @@ from django.contrib.auth import authenticate, login, logout
 
 from accounts.forms import UserRegisterForm
 from accounts.decorators import redirect_if_auth
-from accounts.gan import generateAnimeFace
 
 @redirect_if_auth('/')
 def register(request):
