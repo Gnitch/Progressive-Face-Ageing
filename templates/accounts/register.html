@@ -1,168 +1,194 @@
-{% extends "../base.html" %}
-{% load static %}
-{% block content %}
+{% extends "../base.html" %} {% load static %} {% block content %}
 <style>
-    /* === Google Font ===*/
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
-*{
-margin:0;
-padding:0;
-box-sizing: border-box;
-font-family: 'Poppins', sans-serif;
-}
+  /* === Google Font ===*/
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap");
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
 
-/* === Variables Define ===*/
-:root{
---primary-color:#3525D3;
---white-color:#fff;
---black-color:#3C4A57; 
---light-gray:#E4E8EE;
-}
+  /* === Variables Define ===*/
+  :root {
+    --primary-color: #3525d3;
+    --white-color: #fff;
+    --black-color: #3c4a57;
+    --light-gray: #e4e8ee;
+  }
 
-/* === Body CSS ===*/
-body{  
-position: relative;
-display: flex;
-align-items: center;
-justify-content: center;
-min-height: 100vh;
-}
+  /* === Body CSS ===*/
+  body {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
 
-/* === Main Content CSS ===*/
-.wrapper{
-padding:50px 25px 0;
-max-width:668px;
-width:100%;
-margin:auto;
-}.wrapper::before{
-content:'';
-position: absolute;
-top:0;
-left:0;
-right:0;
-bottom:0;
-background-image: url("{% static 'bg-1.svg' %}");
-background-position: center center;
-background-size: cover;
-background-repeat: no-repeat;
-min-height: 100vh;
-z-index: -1;
-}
-.wrapper .headline{
-text-align: center;
-padding-bottom:48px;
-}
-.wrapper .headline h1{
-font-size: 42px;
-font-weight: 700;
-line-height: 52px;
-}
-.wrapper .form{
-max-width:350px;
-width:100%;
-margin:auto;
-}
-.wrapper .form-group{
-margin-bottom: 15px;
-}
-.wrapper .form-group input{
-display:block;
-font-size: 16px;
-line-height: 24px;
-letter-spacing: -0.1px;
-padding:11px 15px;
-height:48px;
-border-radius: 5px;
-color:var(--black-color);
-border:1px solid #e4e8ee;
-box-shadow: none;
-width:100%;
-}
-.wrapper .form-group input:focus{
-outline:none;
-}
-.wrapper .form-group input::placeholder{
-color:var(--black-color);
-font-weight: 400;
-font-size: 14px;
-}
-.wrapper .btn{
-width:100%;
-margin:15px 0 30px;
-font-size: 14px;
-line-height: 22px;
-font-weight: 700;
-padding:12px 29px;
-height:48px;
-text-transform: uppercase;
-color:var(--white-color);
-background-color: var(--primary-color);
-border:none;
-border-radius: 2px;
-cursor: pointer;
-text-align: center;
-}
-.wrapper .btn:focus{
-outline:none;
-}
-.wrapper .account-exist{
-color:var(--black-color);
-border-top:1px solid var(--light-gray);
-padding-top:20px;
-text-align: center;
-}
-.wrapper .account-exist a{
-color:var(--primary-color);
-}
-@media (max-width:1030px){
-.wrapper::before{
-left:-25%;
-min-height: 60vh;
-height:500px;
-}
-}
-@media (max-width:767px){
-.wrapper{
-max-width: 550px;
-}
-.wrapper .headline h1{
-font-size: 22px;
-line-height:25px;
-}
-}
+  /* === Main Content CSS ===*/
+  .wrapper {
+    padding: 50px 25px 0;
+    max-width: 668px;
+    width: 100%;
+    margin: auto;
+  }
+  .wrapper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("{% static 'bg-1.svg' %}");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    z-index: -1;
+  }
+  .wrapper .headline {
+    text-align: center;
+    padding-bottom: 48px;
+  }
+  .wrapper .headline h1 {
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 52px;
+  }
+  .wrapper .form {
+    max-width: 350px;
+    width: 100%;
+    margin: auto;
+  }
+  .wrapper .form-group {
+    margin-bottom: 15px;
+  }
+  .wrapper .form-group input {
+    display: block;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.1px;
+    padding: 11px 15px;
+    height: 48px;
+    border-radius: 5px;
+    color: var(--black-color);
+    border: 1px solid #e4e8ee;
+    box-shadow: none;
+    width: 100%;
+  }
+  .wrapper .form-group input:focus {
+    outline: none;
+  }
+  .wrapper .form-group input::placeholder {
+    color: var(--black-color);
+    font-weight: 400;
+    font-size: 14px;
+  }
+  .wrapper .btn {
+    width: 100%;
+    margin: 15px 0 30px;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 700;
+    padding: 12px 29px;
+    height: 48px;
+    text-transform: uppercase;
+    color: var(--white-color);
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    text-align: center;
+  }
+  .wrapper .btn:focus {
+    outline: none;
+  }
+  .wrapper .account-exist {
+    color: var(--black-color);
+    border-top: 1px solid var(--light-gray);
+    padding-top: 20px;
+    text-align: center;
+  }
+  .wrapper .account-exist a {
+    color: var(--primary-color);
+  }
+  @media (max-width: 1030px) {
+    .wrapper::before {
+      left: -25%;
+      min-height: 60vh;
+      height: 500px;
+    }
+  }
+  @media (max-width: 767px) {
+    .wrapper {
+      max-width: 550px;
+    }
+    .wrapper .headline h1 {
+      font-size: 22px;
+      line-height: 25px;
+    }
+  }
 </style>
 <div class="wrapper">
-    <div class="headline">
-        <h2>Sign Up</h2>
+  <div class="headline">
+    <h2>Sign Up</h2>
+  </div>
+  <form action="{% url 'accounts:register' %}" method="post">
+    {% csrf_token %}
+    <div class="signup">
+      <div class="form-group">
+        <input
+          type="text"
+          name="username"
+          placeholder="Username"
+          required
+        />   
+      </div>   
+      <div class="form-group">
+        <input
+          type="text"
+          name="first_name"
+          placeholder="First name"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          name="last_name"
+          placeholder="Last name"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <input type="email" name="email" placeholder="Email" required />
+      </div>
+      <div class="form-group">
+        <input
+          type="password"
+          name="password1"
+          placeholder="Password"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="password"
+          name="password2"
+          placeholder="Confirm Password"
+          required
+        />
+      </div>
+      {% if error %}
+        <p style="color: red">{{error}}</p>
+      {% endif %} 
+      <button type="submit" class="btn">SIGN UP</button>
+      <div class="account-exist">
+        Already have an account?
+        <a href="{% url 'accounts:login' %}" id="login">Login</a>
+      </div>
     </div>
-    <form class="form" method="post" action="#">
-       <div class="signup">
-        <div class="form-group">
-            <input type="text" name='first_name' placeholder="First name" required="">
-        </div>
-           <div class="form-group">
-               <input type="text" name='last_name' placeholder="Last name" required="">
-           </div>
-           <div class="form-group">
-               <input type="email" name='email' placeholder="Email" required="">
-           </div>
-           <div class="form-group">
-               <input type="password" name='password1' placeholder="Password" required="">
-           </div>
-<<<<<<< HEAD
-           <div class="form-group">
-            <input type="password" name='password2' placeholder="Confirm Password" required="">
-=======
-           <div class="form-group"> 
-            <input type="password" name='pwd2' placeholder="Confirm Password" required="">
->>>>>>> origin/christina
-        </div>
-           <button type="submit" class="btn">SIGN UP</button>
-           <div class="account-exist">
-               Already have an account? <a href="{% url 'accounts:login' %}" id="login">Login</a>
-           </div>
-       </div>
-    </form>
+  </form>
 </div>
 {% endblock %}
-
