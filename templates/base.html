@@ -9,7 +9,30 @@
   </head>
   <body>
     <h3><a href="{% url 'accounts:login' %}">Login</a></h3>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+      <div class="container px-4">
+          <a class="navbar-brand" href="{% url 'accounts:login' %}">Login</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ms-auto">
+                  <li class="nav-item"><a class="nav-link" href="#about">Home</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#services">About</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+              </ul>
+          </div>
+      </div>
+    </nav>
+    <h1>Hello</h1>
     {% block content %} {% endblock content %}
+
+    <footer class="page-footer font-small bg-dark">
+      <div class="footer-copyright text-center py-3" style="color: aliceblue;">© 2020 Copyright:
+        <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+        <a href="#">Link 1</a>
+        <a href="#">Link 2</a>
+      </div>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   </body>
 </html>
