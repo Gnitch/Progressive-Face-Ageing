@@ -8,7 +8,6 @@
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
   }
-
   /* === Variables Define ===*/
   :root {
     --primary-color: #3525d3;
@@ -25,7 +24,6 @@
     justify-content: center;
     min-height: 100vh;
   }
-
   /* === Main Content CSS ===*/
   .wrapper {
     padding: 50px 25px 0;
@@ -56,11 +54,7 @@
     font-weight: 700;
     line-height: 52px;
   }
-  .wrapper .form {
-    max-width: 350px;
-    width: 100%;
-    margin: auto;
-  }
+
   .wrapper .form-group {
     margin-bottom: 15px;
   }
@@ -101,6 +95,11 @@
     cursor: pointer;
     text-align: center;
   }
+  .wrapper .form11 {
+    max-width: 350px;
+    width: 100%;
+    margin: auto;
+  }
   .wrapper .btn:focus {
     outline: none;
   }
@@ -113,20 +112,6 @@
   .wrapper .account-exist a {
     color: var(--primary-color);
   }
-  .wrapper .forget-password {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px 0;
-  }
-  .wrapper .forget-password a {
-    color: var(--primary-color);
-  }
-  .wrapper .forget-password .check-box {
-    font-size: 15px;
-    color: var(--black-color);
-  }
-
   @media (max-width: 1030px) {
     .wrapper::before {
       left: -25%;
@@ -146,39 +131,72 @@
 </style>
 <div class="wrapper">
   <div class="headline">
-    <h1>SIGN IN !.</h1>
+    <h2>Information</h2>
   </div>
-  <form action="{% url 'accounts:signin' %}" method="post">
+
+  <form class="form" method="POST" action="{% url 'app:missingPersonForm' %}">
     {% csrf_token %}
-    <div class="signin">
-      <div class="form-group">
-        <input type="email" name="email" placeholder="Email" required="" />
-      </div>
-      <div class="form-group">
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          required=""
-        />
-      </div>
-      {% if error %}
-        <p style="color: red">{{error}}</p>
-      {% endif %} 
-      <!--<div style="background-color:red;color:white;padding:2%;">Danger !</div>-->      
-      <div class="forget-password">
-        <div class="check-box">
-          <input type="checkbox" id="checkbox" />
-          <label for="checkbox">Remember me</label>
+    <h3>Missing Person Details</h3>
+    <hr />
+    <div class="form11">
+      <div class="signup">
+        <div class="form-group">
+          <input
+            type="text"
+            name="firstname"
+            placeholder="First name"
+            required=""
+          />
         </div>
-        <a href="#">Forget password?</a>
-      </div>
-      <button type="submit" class="btn">LOGIN</button>
-      <div class="account-exist">
-        Create New a account?
-        <a href="{% url 'accounts:register' %}" id="signup">Signup</a>
+        <div class="form-group">
+          <input type="text" name="lastname" placeholder="Last name" required="" />
+        </div>
+        <div class="form-group1">
+          <label>Gender : </label>
+          <input type="radio" name="gender" value="male" /> Male
+          <input type="radio" name="gender" value="female" /> Female
+          <input type="radio" name="gender" value="other" /> Other
+        </div>
+        <br />
+        <div class="form-group">
+          <!--<label>Height(in cms)</label>-->
+          <input type="number" name="height" placeholder="Height" />
+        </div>
+        <div class="form-group">
+          <!--<label>Weight(in kg)</label>-->
+          <input type="number" name="weight" placeholder="Weight" />
+        </div>
+        <div class="form-group">
+          <input type="text" name="state" placeholder="State" required="" />
+        </div>
+        <div class="form-group">
+          <input type="text" name="city" placeholder="City" required="" />
+        </div>        
+        <div class="form-group">
+          <label>Date of birth:</label>
+          <input type="date" name="dob" required="" />
+        </div>
+        <div class="form-group">
+          <!--<label >AADHAR NUMBER:</label>-->
+          <input
+            type="number"
+            name="adhar"
+            placeholder="AADHAR NUMBER"
+            pattern="[0-9]{12}"
+            title="Enter 12 digit adhar number"            
+            required=""
+          />
+        </div>
+        <div class="form-group">
+          <label>Missing date:</label>
+          <input type="date" name="last_sighted" required="" />
+        </div>
+        {% if error %}
+        <p style="color: red">{{error}}</p>
+        {% endif %}         
       </div>
     </div>
+    <button type="submit" class="btn">Submit</button>
   </form>
 </div>
 {% endblock %}

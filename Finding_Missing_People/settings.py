@@ -133,3 +133,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend','accounts.backends.EmailBackend']
+
+LOGIN_URL = '/auth/login'
+LOGOUT_URL = '/'
