@@ -15,8 +15,12 @@
       class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
       id="mainNav"
     >
-      <div class="container px-4">
-        <a class="navbar-brand" href="{% url 'accounts:login' %}">Login</a>
+      <div class="container px-4">        
+        {% if user.is_authenticated %} 
+          <a class="navbar-brand" href="{% url 'accounts:signout' %}">Logout</a>
+        {% else %}
+          <a class="navbar-brand" href="{% url 'accounts:signin' %}">Login</a>
+        {% endif %}
         <button
           class="navbar-toggler"
           type="button"
@@ -30,15 +34,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="#about">Home</a></li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'accounts:signin' %}">Sign in</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'accounts:signout' %}"
-                >Sign out</a
-              >
-            </li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'app:home' %}">Home</a></li>
+
             <li class="nav-item">
               <a class="nav-link" href="#services">About</a>
             </li>
@@ -52,7 +49,7 @@
         </div>
       </div>
     </nav>
-    <h1>Hello</h1>
+    <!-- <h1>Hello</h1> -->
     {% block content %} {% endblock content %}
 
     <footer class="page-footer font-small bg-dark">

@@ -33,12 +33,10 @@ def signin(request):
             return render(request, 'accounts/login.html', context)
         else :
             login(request, user)
-            print('Logged in')
             HttpResponseRedirect('/')
 
     return render(request, 'accounts/login.html')
 
 def signout(request):
     logout(request)
-    print('Logged out')
     return render(request, 'accounts/login.html')
