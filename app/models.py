@@ -4,8 +4,7 @@ from django.contrib.auth.models import User
 class Family(models.Model):
     father = models.CharField(max_length=150)
     mother = models.CharField(max_length=150)
-    brother = models.CharField(max_length=150, blank=True)
-    sister = models.CharField(max_length=150, blank=True)    
+    sibling = models.CharField(max_length=150, blank=True)  
     guardian = models.CharField(max_length=150, blank=True)
     contact1 = models.IntegerField()
     contact2 = models.IntegerField(blank=True)
@@ -50,9 +49,9 @@ class Missing(models.Model):
         ('DD', 'Daman and Diu')
     ]     
     choices_gender = [
-        ('m', 'Male'),
-        ('f', 'Female'),
-        ('t', 'Transgender'),
+        ('male', 'Male'),
+        ('female', 'Female'),
+        ('other', 'Other'),
         ('none','Prefer Not To Say')
     ]             
     gender = models.CharField(choices=choices_gender, default='none', max_length=25)

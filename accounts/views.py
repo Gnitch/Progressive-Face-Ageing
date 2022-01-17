@@ -10,7 +10,7 @@ def register(request):
         form = UserRegisterForm(request.POST)
         if form.is_valid() == True:
             obj = form.save() 
-            login(request)          
+            signin(request)          
         else :            
             errors = form.errors.as_data()             
             errors = list(errors.values())        
@@ -33,12 +33,10 @@ def signin(request):
             return render(request, 'accounts/login.html', context)
         else :
             login(request, user)
-            print('Logged in')
             HttpResponseRedirect('/')
 
     return render(request, 'accounts/login.html')
 
-def logout(request):
+def signout(request):
     logout(request)
-    print('Logged out')
-    return render(request, 'accounts/base.html')
+    return render(request, 'accounts/login.html')

@@ -1,28 +1,55 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-  
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
-    <h3><a href="{% url 'accounts:login' %}">Login</a></h3>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-      <div class="container px-4">
-          <a class="navbar-brand" href="{% url 'accounts:login' %}">Login</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-          <div class="collapse navbar-collapse" id="navbarResponsive">
-              <ul class="navbar-nav ms-auto">
-                  <li class="nav-item"><a class="nav-link" href="#about">Home</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#services">About</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-              </ul>
-          </div>
+    <nav
+      class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
+      id="mainNav"
+    >
+      <div class="container px-4">        
+        {% if user.is_authenticated %} 
+          <a class="navbar-brand" href="{% url 'accounts:signout' %}">Logout</a>
+        {% else %}
+          <a class="navbar-brand" href="{% url 'accounts:signin' %}">Login</a>
+        {% endif %}
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="{% url 'app:home' %}">Home</a></li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#services">About</a>
+            </li>
+            <li class="nav-item">
+              {% if user.is_authenticated %} {{request.user.email}} {% endif %}
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
-    <h1>Hello</h1>
+    <!-- <h1>Hello</h1> -->
     {% block content %} {% endblock content %}
 
     <footer class="page-footer font-small bg-dark" style="bottom: 0vh;">
@@ -33,6 +60,10 @@
       </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
