@@ -6,5 +6,5 @@ app_name='app'
 urlpatterns = [
     path('', home, name=''),
     path('family-form/', familyForm, name='familyForm'),
-    path('mssing-person-form/', missingPersonForm, name='missingPersonForm'),
+    path('missing-person-form/', missingPersonForm, name='missingPersonForm'),
 ]
