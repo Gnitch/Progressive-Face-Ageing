@@ -15,12 +15,8 @@
       class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
       id="mainNav"
     >
-      <div class="container px-4">        
-        {% if user.is_authenticated %} 
-          <a class="navbar-brand" href="{% url 'accounts:signout' %}">Logout</a>
-        {% else %}
-          <a class="navbar-brand" href="{% url 'accounts:signin' %}">Login</a>
-        {% endif %}
+      <div class="container px-4">
+        <a class="navbar-brand" href="">Face Aging System</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -30,20 +26,30 @@
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="{% url 'app:home' %}">Home</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'app:home' %}">Home</a>
+            </li>
 
             <li class="nav-item">
               <a class="nav-link" href="#services">About</a>
             </li>
             <li class="nav-item">
-              {% if user.is_authenticated %} {{request.user.email}} {% endif %}
+              {% if user.is_authenticated %}
+              <a class="nav-link" href="{% url 'accounts:signout' %}"
+                >Logout</a
+              >
+              {% else %}
+              <a class="nav-link" href="{% url 'accounts:signin' %}"
+                >Login</a
+              >
+              {% endif %}
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#contact">Contact</a>
+              <a class="nav-link">{% if user.is_authenticated %} {{request.user.email}} {% endif%}</a>
             </li>
           </ul>
         </div>
@@ -52,14 +58,24 @@
     <!-- <h1>Hello</h1> -->
     {% block content %} {% endblock content %}
 
-    <footer class="page-footer font-small bg-dark" style="bottom: 0vh;">
-      <div class="footer-copyright text-center py-3" style="color: aliceblue;">© 2020 Copyright:
+    <footer class="page-footer font-small bg-dark" style="bottom: 0vh">
+      <div class="footer-copyright text-center py-3" style="color: aliceblue">
+        © 2020 Copyright:
         <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
         <a href="#">Link 1</a>
         <a href="#">Link 2</a>
       </div>
     </footer>
-
+    <style>
+      footer {
+        position: fixed;
+        height: 50px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        margin-bottom: 0px;
+      }
+    </style>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
