@@ -127,3 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+trained_models/cyclegan/loss_log.txt
+trained_models/cyclegan/loss_avg.txt
