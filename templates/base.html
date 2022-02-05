@@ -16,7 +16,7 @@
       id="mainNav"
     >
       <div class="container px-4">
-        <a class="navbar-brand" href="">Face Aging System</a>
+        <a class="navbar-brand" href="{% url 'app:home' %}">Face Aging System</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -33,7 +33,11 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'app:home' %}">Home</a>
             </li>
-
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'app:familyForm' %}">Report</a>
+            </li>
+            {% endif %}
             <li class="nav-item">
               <a class="nav-link" href="#services">About</a>
             </li>

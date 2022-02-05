@@ -41,7 +41,7 @@ def missingPersonForm(request):
                 form_obj.family_id = family_obj.id 
                 form_obj.user_id = request.user.id
                 form_obj.save()            
-                print(f'Missing object created with pk={form_obj.id}')    
+                return render(request,'app/family.html')    
             
             else :
                 context = {'error':'Some error occured with the session variable'}           
