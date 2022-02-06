@@ -7,6 +7,9 @@ from app.models import Family, Missing
 def home(request):     
     return render(request,'app/home.html')
 
+def find(request):     
+    return render(request,'app/find.html')    
+
 @login_required()
 def familyForm(request):      
     if request.method == "POST" :
