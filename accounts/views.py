@@ -33,7 +33,7 @@ def signin(request):
             return render(request, 'accounts/login.html', context)
         else :
             login(request, user)
-            HttpResponseRedirect('/')
+            return render(request, 'app/home.html')
 
     return render(request, 'accounts/login.html')
 
