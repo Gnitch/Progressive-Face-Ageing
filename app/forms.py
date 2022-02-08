@@ -29,7 +29,7 @@ class MissingForm(forms.ModelForm):
     }    
     class Meta :
         model = Missing
-        fields = ['gender', 'state', 'firstname', 'lastname', 'weight', 'height', 'city', 'dob', 'adhar', 'last_sighted']
+        fields = ['gender', 'img_person','state', 'firstname', 'lastname', 'weight', 'height', 'city', 'dob', 'adhar', 'last_sighted']
 
     def clean(self):
         adhar = self.cleaned_data.get('adhar')

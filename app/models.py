@@ -64,6 +64,8 @@ class Missing(models.Model):
     dob = models.DateField()
     adhar = models.IntegerField(blank=True)
     last_sighted = models.DateField()
+    status = models.BooleanField(default=False)
+    img_person = models.ImageField(upload_to="missing-people/", default="media/missing-people/park.JPG")
     family = models.ForeignKey(Family,on_delete=models.CASCADE)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
 

@@ -156,7 +156,7 @@
     <h2>Information</h2>
   </div>
 
-  <form class="form" method="POST" action="{% url 'app:missingPersonForm' %}">
+  <form class="form" method="POST" action="{% url 'app:missingPersonForm' %}" enctype="multipart/form-data">
     {% csrf_token %}
     
     <h3>Missing Person Details</h3>
@@ -182,11 +182,9 @@
         </div>
         <br />
         <div class="form-group">
-          <!--<label>Height(in cms)</label>-->
           <input type="number" name="height" placeholder="Height" />
         </div>
         <div class="form-group">
-          <!--<label>Weight(in kg)</label>-->
           <input type="number" name="weight" placeholder="Weight" />
         </div>
         <div class="form-group">
@@ -240,7 +238,6 @@
           <input type="date" name="dob" required="" />
         </div>
         <div class="form-group">
-          <!--<label >AADHAR NUMBER:</label>-->
           <input
             type="number"
             name="adhar"
@@ -260,10 +257,9 @@
       </div>
       <div>
       <label for="img">Add image :</label><br>
-      <input type="file" id="img" name="img" accept="image/*">
+      <input type="file" id="img" name="img_person" accept="image/*">
       </div>
     </div>
-    
     <button type="submit" class="btn">Submit</button>
   </form>
 </div>

@@ -16,9 +16,8 @@ def familyForm(request):
         family_form = FamilyForm(request.POST)
         if family_form.is_valid():
             form_obj = family_form.save()
-            request.session['family_pk'] = form_obj.id
-            print(f'Family object created with pk={form_obj.id}')
-            return render(request,'app/person.html')
+            request.session['family_pk'] = form_obj.id      
+            return render(request, 'app/person.html')
 
         else :            
             errors = family_form.errors.as_data()             
@@ -34,7 +33,7 @@ def familyForm(request):
 @login_required()
 def missingPersonForm(request):       
     if request.method == "POST" :
-        missing_form = MissingForm(request.POST)
+        missing_form = MissingForm(request.POST, request.FILES)
         if missing_form.is_valid():
             if 'family_pk' in request.session :
                 form_obj = missing_form.save(commit=False)
@@ -58,7 +57,7 @@ def missingPersonForm(request):
             for error in errors :
                 err = str(list(error[0])[0]) + ' '
             context = {'error':err}           
-            return render(request, 'app/person.html', context)                                
-
+            return render(request, 'app/person.html', context)    
+    
     return render(request,'app/person.html')
 
