@@ -1,0 +1,29 @@
+{% extends "../base.html" %} {% block content %}
+<div class="container-fluid" >
+    <img class="mt-5" src="{{person_detail.img_person.url}}" height="300" width="300" />    
+    <h2 class="display-3 mt-3">{{person_detail.firstname}} {{person_detail.lastname}}</h2>
+    <h2 class="display-6 mt-3">{{state}}</h2>
+    <h2 class="display-6 mt-3">{{gender}}</h2>
+    <h2 class="display-6 mt-3">{{person_detail.weight}}</h2>
+    <h2 class="display-6 mt-3">{{person_detail.height}}</h2>
+    <h2 class="display-6 mt-3">{{person_detail.city}}</h2>
+    <h2 class="display-6 mt-3">{{person_detail.dob}}</h2>
+    <h2 class="display-6 mt-3">{{age}} years</h2>
+    <h2 class="display-6 mt-3">{{person_detail.adhar}}</h2>
+    <h2 class="display-6 mt-3">{{person_detail.last_sighted}}</h2>
+
+    <h2 class="display-3 mt-3">Family details</h2>
+    <h2 class="display-6 mt-3">{{family_detail.father}}</h2>
+    <h2 class="display-6 mt-3">{{family_detail.mother}}</h2>
+    <h2 class="display-6 mt-3">{{family_detail.sibling}}</h2>
+    <h2 class="display-6 mt-3">{{family_detail.guardian}}</h2>
+    <h2 class="display-6 mt-3">{{family_detail.contact1}}</h2>
+    <h2 class="display-6 mt-3">{{family_detail.contact2}}</h2>
+
+    {% if person_detail.status == False %}
+        <a href="{% url 'app:statusUpdate' person_detail.id %}">
+            <Button class="btn btn-info mb-5">Found</Button></a>    
+    {% endif %}
+</div>
+
+{% endblock %}

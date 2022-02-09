@@ -155,7 +155,7 @@
         <div class="card_content">
           <h2 class="card_title">{{person.firstname}} {{person.lastname}}</h2>
           <p class="card_text">DOB: {{person.dob}}</p>
-          <button class="btn card_btn">Read More</button>
+          <a href="{% url 'app:personDetail' person.id %}"><button class="btn card_btn">Read More</button></a>          
         </div>
       </div>
     </li>

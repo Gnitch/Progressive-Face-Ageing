@@ -3,14 +3,34 @@ from django.contrib.auth.decorators import login_required
 
 from app.forms import FamilyForm, MissingForm
 from app.models import Family, Missing
+from utils.choices import choices_gender, choices_state
+from utils.util import calculateAge
 
 def home(request):     
     return render(request,'app/home.html')
 
+def personDetail(request, person_id):   
+    person_detail = get_object_or_404(Missing, pk=person_id)    
+    age = calculateAge(person_detail.dob)
+    family_detail = get_object_or_404(Family, pk=person_detail.family_id)
+    context = {"person_detail":person_detail, 
+                "family_detail":family_detail,
+                "state":choices_state[person_detail.state],
+                "gender":choices_gender[person_detail.gender],
+                "age":age}
+    return render(request, 'app/person_deatil.html', context)
+
 def find(request):     
-    people_list = get_list_or_404(Missing)
+    people_list = get_list_or_404(Missing, status=False)
     context = {"people_list":people_list}    
     return render(request,'app/find.html',context)    
+
+@login_required()
+def statusUpdate(request, person_id):
+    person_detail = get_object_or_404(Missing, pk=person_id)    
+    person_detail.status = True
+    person_detail.save()
+    return personDetail(request, person_id)
 
 @login_required()
 def familyForm(request):      
