@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, redirect
+from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, redirect, get_list_or_404
 from django.contrib.auth.decorators import login_required
 
 from app.forms import FamilyForm, MissingForm
@@ -8,7 +8,9 @@ def home(request):
     return render(request,'app/home.html')
 
 def find(request):     
-    return render(request,'app/find.html')    
+    people_list = get_list_or_404(Missing)
+    context = {"people_list":people_list}    
+    return render(request,'app/find.html',context)    
 
 @login_required()
 def familyForm(request):      

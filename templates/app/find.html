@@ -6,8 +6,10 @@
     margin: 0 auto;
   }
   img {
-    height: auto;
-    max-width: 100%;
+    /* height: auto; */
+    /* max-width: 100%; */
+    height: 300px;
+    width: 350px;
     vertical-align: middle;
   }
   .btn {
@@ -47,6 +49,7 @@
 
   @media (min-width: 56rem) {
     .cards_item {
+      align-content: center;
       width: 33.3333%;
     }
   }
@@ -141,90 +144,22 @@
 
 <div class="main">
   <ul class="cards">
+    {% for person in people_list %}
     <li class="cards_item">
       <div class="card">
         <div class="card_image">
           <img
-            src="https://images.hdqwalls.com/wallpapers/bthumb/elle-fanning-sidney-hall-photoshoot-4k.jpg"
+            src="{{person.img_person.url}}"
           />
         </div>
         <div class="card_content">
-          <h2 class="card_title">Stock Image</h2>
-          <p class="card_text">Sujoy is our Kami</p>
+          <h2 class="card_title">{{person.firstname}} {{person.lastname}}</h2>
+          <p class="card_text">DOB: {{person.dob}}</p>
           <button class="btn card_btn">Read More</button>
         </div>
       </div>
     </li>
-    <li class="cards_item">
-      <div class="card">
-        <div class="card_image">
-          <img
-            src="https://images.hdqwalls.com/wallpapers/elle-fanning-actress.jpg"
-          />
-        </div>
-        <div class="card_content">
-          <h2 class="card_title">Stock Image</h2>
-          <p class="card_text">Sujoy is our Kami</p>
-          <button class="btn card_btn">Read More</button>
-        </div>
-      </div>
-    </li>
-    <li class="cards_item">
-      <div class="card">
-        <div class="card_image">
-          <img
-            src="https://images.hdqwalls.com/download/elle-fanning-2019-mn-1920x1080.jpg"
-          />
-        </div>
-        <div class="card_content">
-          <h2 class="card_title">Stock Image</h2>
-          <p class="card_text">Sujoy is our Kami</p>
-          <button class="btn card_btn">Read More</button>
-        </div>
-      </div>
-    </li>
-    <li class="cards_item">
-      <div class="card">
-        <div class="card_image">
-          <img
-            src="https://images.hdqwalls.com/download/elle-fanning-5k-207-xf-1920x1080.jpg"
-          />
-        </div>
-        <div class="card_content">
-          <h2 class="card_title">Stock Image</h2>
-          <p class="card_text">Sujoy is our Kami</p>
-          <button class="btn card_btn">Read More</button>
-        </div>
-      </div>
-    </li>
-    <li class="cards_item">
-      <div class="card">
-        <div class="card_image">
-          <img
-            src="https://images.hdqwalls.com/download/elle-fanning-2017-5k-c0-1920x1080.jpg"
-          />
-        </div>
-        <div class="card_content">
-          <h2 class="card_title">Stock Image</h2>
-          <p class="card_text">Sujoy is our Kami</p>
-          <button class="btn card_btn">Read More</button>
-        </div>
-      </div>
-    </li>
-    <li class="cards_item">
-      <div class="card">
-        <div class="card_image">
-          <img
-            src="https://images.hdqwalls.com/download/elle-fanning-instyle-magazine-2019-j6-1920x1080.jpg"
-          />
-        </div>
-        <div class="card_content">
-          <h2 class="card_title">Stock Image</h2>
-          <p class="card_text">Sujoy is our Kami</p>
-          <button class="btn card_btn">Read More</button>
-        </div>
-      </div>
-    </li>
+    {% endfor %}    
   </ul>
 </div>
 {% endblock %}
