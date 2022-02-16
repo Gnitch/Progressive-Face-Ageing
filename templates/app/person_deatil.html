@@ -1,25 +1,110 @@
 {% extends "../base.html" %} {% block content %}
-<div class="container-fluid" >
-    <img class="mt-5" src="{{person_detail.img_person.url}}" height="300" width="300" />    
-    <h2 class="display-3 mt-3">{{person_detail.firstname}} {{person_detail.lastname}}</h2>
-    <h2 class="display-6 mt-3">{{state}}</h2>
-    <h2 class="display-6 mt-3">{{gender}}</h2>
-    <h2 class="display-6 mt-3">{{person_detail.weight}}</h2>
-    <h2 class="display-6 mt-3">{{person_detail.height}}</h2>
-    <h2 class="display-6 mt-3">{{person_detail.city}}</h2>
-    <h2 class="display-6 mt-3">{{person_detail.dob}}</h2>
-    <h2 class="display-6 mt-3">{{age}} years</h2>
-    <h2 class="display-6 mt-3">{{person_detail.adhar}}</h2>
-    <h2 class="display-6 mt-3">{{person_detail.last_sighted}}</h2>
+<style>
 
-    <h2 class="display-3 mt-3">Family details</h2>
-    <h2 class="display-6 mt-3">{{family_detail.father}}</h2>
-    <h2 class="display-6 mt-3">{{family_detail.mother}}</h2>
-    <h2 class="display-6 mt-3">{{family_detail.sibling}}</h2>
-    <h2 class="display-6 mt-3">{{family_detail.guardian}}</h2>
-    <h2 class="display-6 mt-3">{{family_detail.contact1}}</h2>
-    <h2 class="display-6 mt-3">{{family_detail.contact2}}</h2>
 
+table.center {
+  margin-left: auto; 
+  margin-right: auto;
+}
+
+td,th {
+  text-align: left;
+}
+#customers {
+  font-family: Arial, Helvetica, sans-serif;  
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #586566;
+  color: white;
+}
+
+</style>
+<br><br><br>
+<div style="text-align: center;">
+    
+    
+    <h2>Missing Person Details</h2> 
+    
+    <img  class="mt-5" src="{{person_detail.img_person.url}}" height="300" width="300" />
+    
+ <br><br>
+<table style="width:50%" class="center" id="customers">
+    <tr>
+      <th>First Name : </th>
+      <td>   {{person_detail.firstname}}</td>
+    </tr>
+
+    <tr>
+        <th>Last Name :  </th>
+        <td>  {{person_detail.lastname}}</td>
+      </tr>
+      <tr>
+        <th>Weight :  </th>
+        <td>  {{person_detail.weight}}</td>
+      </tr>
+      <tr>
+        <th>Height :  </th>
+        <td>  {{person_detail.height}}</td>
+      </tr>
+      <tr>
+        <th>City :  </th>
+        <td>  {{person_detail.city}}</td>
+      </tr>
+      <tr>
+        <th>Date of Birth :  </th>
+        <td>  {{person_detail.dob}}</td>
+      </tr>
+      <tr>
+        <th>Aadhar Card No. :  </th>
+        <td>  {{person_detail.adhar}}</td>
+      </tr>
+      <tr>
+        <th>Last seen :  </th>
+        <td>  {{person_detail.last_sighted}}</td>
+      </tr>
+  </table> 
+  
+  <hr>
+  <h2>Family Details</h2>
+  <table style="width:50%" class="center" id="customers">
+    <tr>
+      <th>Father :</th>
+      <td>{{family_detail.father}}</td>
+    </tr>
+
+    <tr>
+        <th>Mother :</th>
+        <td>{{family_detail.mother}}</td>
+      </tr>
+      <tr>
+        <th>Sibling :</th>
+        <td>{{family_detail.sibling}}</td>
+      </tr>
+      <tr>
+        <th>Guardian :</th>
+        <td>{{family_detail.guardian}}</td>
+      </tr>
+      <tr>
+        <th>Contact 1 :</th>
+        <td>{{family_detail.contact1}}</td>
+      </tr>
+      <tr>
+        <th>Contact 2 :</th>
+        <td>{{family_detail.contact2}}</td>
+      </tr>
+      
+  </table>
+
+<br>
     {% if person_detail.status == False %}
         <a href="{% url 'app:statusUpdate' person_detail.id %}">
             <Button class="btn btn-info mb-5">Found</Button></a>    
