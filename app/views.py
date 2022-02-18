@@ -25,6 +25,15 @@ def find(request):
     context = {"people_list":people_list}    
     return render(request,'app/find.html',context)    
 
+def searchPerson(request):
+    query = request.GET.get("q")
+    people_list = list(Missing.objects.filter(firstname=query).filter(status=False))
+    context = {"people_list":people_list}        
+    if len(people_list) < 1 :
+        context['error'] = "No Missing Person found"
+        print(context)
+    return render(request,'app/find.html',context)    
+
 @login_required()
 def statusUpdate(request, person_id):
     person_detail = get_object_or_404(Missing, pk=person_id)    

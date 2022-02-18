@@ -136,8 +136,8 @@
 </style>
 
 <div class="search">
-  <form class="search-form">
-    <input type="text" placeholder="Find for missing people" />
+  <form class="search-form" method="get" action="{% url 'app:searchPerson' %}">
+    <input type="text" placeholder="Enter First Name" name="q" />
     <input type="submit" value="Search" />
   </form>
 </div>
