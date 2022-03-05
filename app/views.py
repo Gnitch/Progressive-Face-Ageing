@@ -1,13 +1,24 @@
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, redirect, get_list_or_404
 from django.contrib.auth.decorators import login_required
+import os
 
 from app.forms import FamilyForm, MissingForm
 from app.models import Family, Missing
 from utils.choices import choices_gender, choices_state
 from utils.util import calculateAge
+from trained_models.cyclegan.cyclegan import ageProgressCyclegan
 
 def home(request):     
     return render(request,'app/home.html')
+
+@login_required()
+def cyclegan(request, person_id):
+    person_detail = get_object_or_404(Missing, pk=person_id)    
+    if str(person_detail.adhar)+".png" not in os.listdir("media/AgeProgress/cyclegan") :
+        ageProgressCyclegan(person_detail.img_person.url, person_detail.adhar)
+    
+    context = {"person_detail":person_detail,"cycle_path":"/media/AgeProgress/cyclegan/"+str(person_detail.adhar)+".png"}    
+    return render(request, 'app/age_progress.html', context)
 
 def personDetail(request, person_id):   
     person_detail = get_object_or_404(Missing, pk=person_id)    
@@ -74,7 +85,7 @@ def missingPersonForm(request):
                 form_obj.family_id = family_obj.id 
                 form_obj.user_id = request.user.id
                 form_obj.save()            
-                return render(request,'app/family.html')    
+                return render(request,'app/find.html')    
             
             else :
                 context = {'error':'Some error occured with the session variable'}           

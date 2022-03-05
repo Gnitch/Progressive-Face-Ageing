@@ -10,6 +10,7 @@ urlpatterns = [
     path('find/', views.find, name='find'),
     path('person-detail/<int:person_id>', views.personDetail, name='personDetail'),
     path('status-update/<int:person_id>', views.statusUpdate, name='statusUpdate'),
+    path('cyclegan/<int:person_id>', views.cyclegan, name='cyclegan'),
     path('family-form/', views.familyForm, name='familyForm'),
     path('search-person/', views.searchPerson, name='searchPerson'),
     path('missing-person-form/', views.missingPersonForm, name='missingPersonForm'),

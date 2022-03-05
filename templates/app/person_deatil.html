@@ -109,6 +109,10 @@ td,th {
         <a href="{% url 'app:statusUpdate' person_detail.id %}">
             <Button class="btn btn-info mb-5">Found</Button></a>    
     {% endif %}
+    {% if user.is_authenticated %}
+        <a href="{% url 'app:cyclegan' person_detail.id %}">
+            <Button class="btn btn-info mb-5">Age Progress</Button></a>    
+    {% endif %}    
 </div>
 
 {% endblock %}

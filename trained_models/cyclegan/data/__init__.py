@@ -1,14 +1,14 @@
 import importlib
 import torch.utils.data
-from data.base_data_loader import BaseDataLoader
-from data.base_dataset import BaseDataset
+from trained_models.cyclegan.data.base_data_loader import BaseDataLoader
+from trained_models.cyclegan.data.base_dataset import BaseDataset
 
 
 def find_dataset_using_name(dataset_name):
     # Given the option --dataset_mode [datasetname],
     # the file "data/datasetname_dataset.py"
     # will be imported.
-    dataset_filename = "data." + dataset_name + "_dataset"
+    dataset_filename = "trained_models.cyclegan.data." + dataset_name + "_dataset"
     datasetlib = importlib.import_module(dataset_filename)
 
     # In the file, the class called DatasetNameDataset() will

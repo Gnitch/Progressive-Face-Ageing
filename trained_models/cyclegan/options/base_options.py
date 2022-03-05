@@ -1,14 +1,87 @@
 import argparse
 import os
-from util import util
+from trained_models.cyclegan.util import util
 import torch
-import models
-import data
+import trained_models.cyclegan.models 
+import trained_models.cyclegan.data
 
 
 class BaseOptions():
     def __init__(self):
         self.initialized = False
+        self.model = "cycle_gan"
+        self.gpu_ids = []
+        self.isTrain = True
+        self.checkpoints_dir = "./checkpoints"
+        self.name = "experiment_name"
+        self.batch_size = 1
+        self.loadSize = 286
+        self.fineSize = 286
+        self.display_winsize = 256
+        self.input_nc = 3
+        self.output_nc = 3
+        self.ngf = 64
+        self.ndf = 64
+        self.netD = "basic"
+        self.netG = "resnet_9blocks"
+        self.n_layers_D = 3
+        self.dataset_mode = "unaligned"
+        self.direction = "AtoB"
+        self.epoch = "latest"
+        self.num_threads = "4"
+        self.norm = "instance"
+        self.serial_batches = False
+        self.no_dropout = False
+        self.max_dataset_size = float("inf")
+        self.resize_or_crop = "resize_and_crop"
+        self.no_flip = False
+        self.init_type = "normal"
+        self.init_gain = float(0.02)
+        self.verbose = False
+        self.suffix = ""
+
+        # Train Options
+        self.display_freq = 400
+        self.display_ncols = 4
+        self.display_id = 1
+        self.display_server = "http://localhost"
+        self.display_env = "main"
+        self.display_port = 8097
+        self.update_html_freq = 1000
+        self.print_freq = 100
+        self.save_latest_freq = 5000
+        self.save_epoch_freq = 5
+        self.continue_train = False
+        self.epoch_count = 1
+        self.phase = "train"
+        self.use_pretrained_model = False
+        self.pretrained_model_name = ""
+        self.pretrained_model_subname = ""
+        self.pretrained_model_epoch = ""
+        self.G_A_freeze_layer = 0
+        self.G_B_freeze_layer = 0
+        self.D_A_freeze_layer = 0
+        self.D_B_freeze_layer = 0
+        self.niter = 1
+        self.niter_decay = 1
+        self.beta1 = 0.5
+        self.lr = 0.0002
+        self.no_lsgan = False
+        self.pool_size = 50
+        self.no_html = False
+        self.lr_policy = "lambda"
+        self.lr_decay_iters = 50
+        
+    # parser.add_argument('--lambda_A', type=float, default=10.0, help='weight for cycle loss (A -> B -> A)')
+    #         parser.add_argument('--lambda_B', type=float, default=10.0,
+    #                             help='weight for cycle loss (B -> A -> B)')
+    #         parser.add_argument('--lambda_identity', type=float, default=0.5, 
+
+        # cycle_gan_model.py args
+        self.lambda_A = 10.0
+        self.lambda_B = 10.0
+        self.lambda_identity = 0.5
+
 
     def initialize(self, parser):
         # parser.add_argument('--dataroot', required=True, help='path to images (should have subfolders trainA, trainB, valA, valB, etc)')
@@ -45,6 +118,9 @@ class BaseOptions():
         parser.add_argument('--init_gain', type=float, default=0.02, help='scaling factor for normal, xavier and orthogonal.')
         parser.add_argument('--verbose', action='store_true', help='if specified, print more debugging information')
         parser.add_argument('--suffix', default='', type=str, help='customized suffix: opt.name = opt.name + suffix: e.g., {model}_{netG}_size{loadSize}')
+
+
+        
         self.initialized = True
         return parser
 
@@ -60,17 +136,16 @@ class BaseOptions():
 
         # modify model-related parser options
         model_name = opt.model
-        model_option_setter = models.get_option_setter(model_name)
+        model_option_setter = trained_models.cyclegan.models.get_option_setter(model_name)
         parser = model_option_setter(parser, self.isTrain)
         opt, _ = parser.parse_known_args()  # parse again with the new defaults
 
         # modify dataset-related parser options
         dataset_name = opt.dataset_mode
-        dataset_option_setter = data.get_option_setter(dataset_name)
+        dataset_option_setter = trained_models.cyclegan.data.get_option_setter(dataset_name)
         parser = dataset_option_setter(parser, self.isTrain)
 
         self.parser = parser
-
         return parser.parse_args()
 
     def print_options(self, opt):
@@ -103,7 +178,7 @@ class BaseOptions():
             suffix = ('_' + opt.suffix.format(**vars(opt))) if opt.suffix != '' else ''
             opt.name = opt.name + suffix
 
-        self.print_options(opt)
+        # self.print_options(opt)
 
         # set gpu ids
         str_ids = opt.gpu_ids.split(',')

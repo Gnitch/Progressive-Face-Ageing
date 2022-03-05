@@ -127,4 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
 trained_models/cyclegan/model.pth
+media/AgeProgress/cyclegan
+media/missing-people
