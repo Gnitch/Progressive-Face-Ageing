@@ -1,5 +1,46 @@
 {% extends "../base.html" %} {% block content %}
-<img  class="mt-5" src="{{person_detail.img_person.url}}" height="300" width="300" />
-<img  class="mt-5" src="{{cycle_path}}" height="300" width="300" />
+
+<style>
+    * {
+      box-sizing: border-box;
+    }
+ 
+    .row {
+      display: flex;
+      
+    }
+    
+    .column {
+      flex: 30.33%;
+      padding: 66px;
+    }
+
+    .top-left {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+}
+    </style>
+    <br>
+    <br>
+
+<div class="row">
+    <br>
+    
+    <div class="column">
+        <h3>Original Image</h3>
+      <img src="{{person_detail.img_person.url}}" alt="Snow" height="300" width="300" >
+      
+    </div>
+    <div class="column">
+        <img src="https://thumbs.dreamstime.com/b/black-arrow-isolated-white-background-arrow-92370258.jpg" alt="Snow" height="300" width="300" >
+      </div>
+      
+    <div class="column">
+        <h3>Age Progressed Image</h3>
+      <img src="{{cycle_path}}"  alt="Forest" height="300" width="300" >
+      <h3>(Cycle Gan O/P)</h3>
+    </div>
+</div>
 
 {% endblock %}
