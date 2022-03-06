@@ -34,7 +34,7 @@ def ageProgressCyclegan(img_path, adhar):
     image.unsqueeze_(0)
 
     # os.chdir("trained_models/cyclegan")
-    trained_model = torch.load("model.pth")
+    trained_model = torch.load("trained_models/cyclegan/model.pth")
     trained_model.eval()
     img = trained_model(image)
     img = denorm(img)
