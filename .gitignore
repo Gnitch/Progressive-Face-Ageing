@@ -131,3 +131,4 @@ dmypy.json
 trained_models/cyclegan/model.pth
 media/AgeProgress/cyclegan
 media/missing-people
+trained_models/sam/sam_model.pth
