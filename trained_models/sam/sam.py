@@ -16,8 +16,7 @@ sys.path.append("..")
 from datasets.augmentations import AgeTransformer
 from models.psp import pSp
 from utils.common import tensor2im
-# os.chdir("../../../../")
-# print(os.listdir())
+os.chdir("../../../")
 
 
 def ageProgressSam(img_path, adhar):
@@ -40,23 +39,25 @@ def ageProgressSam(img_path, adhar):
 
 
     model_path = EXPERIMENT_ARGS['model_path']
-    ckpt = torch.load(model_path, map_location='cpu')
+    # ckpt = torch.load(model_path, map_location='cpu')
 
 
-    opts = ckpt['opts']
-    pprint.pprint(opts)
+    # opts = ckpt['opts']
+    # pprint.pprint(opts)
 
 
-    opts['checkpoint_path'] = model_path
+    # opts['checkpoint_path'] = model_path
 
 
-    net = torch.load("sam_model.pth")
+    net = torch.load(model_path)
     net.eval()
     # net.cuda()
 
 
     image_path = EXPERIMENT_DATA_ARGS[EXPERIMENT_TYPE]["image_path"]
-    original_image = Image.open(image_path).convert("RGB")
+    
+    original_image = Image.open(img_path[1:]).convert("RGB")
+    original_image = original_image.resize((256, 256))
 
 
     img_transforms = EXPERIMENT_ARGS['transform']
@@ -72,7 +73,7 @@ def ageProgressSam(img_path, adhar):
 
 
     # for each age transformed age, we'll concatenate the results to display them side-by-side
-    results = np.array(aligned_image)
+    results = np.array(original_image)
     for age_transformer in age_transformers:
         print(f"Running on target age: {age_transformer.target_age}")
         with torch.no_grad():
@@ -87,6 +88,6 @@ def ageProgressSam(img_path, adhar):
     results = Image.fromarray(results)
 
     # save image at full resolution
-    results.save("media/AgeProgress/sam/{adhar}.png")
+    results.save(f"media/AgeProgress/sam/{adhar}.png")
 
 
