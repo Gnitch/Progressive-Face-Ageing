@@ -8,7 +8,7 @@ import torch
 import torchvision.transforms as transforms
 
 # print(os.listdir())
-os.chdir("trained_models/sam/SAM")
+os.chdir("SAM")
 # print(os.listdir())
 sys.path.append(".")
 sys.path.append("..")
