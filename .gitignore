@@ -132,3 +132,4 @@ trained_models/cyclegan/model.pth
 media/AgeProgress/cyclegan
 media/missing-people
 trained_models/sam/sam_model.pth
+trained_models/sam/shape_predictor_68_face_landmarks.dat
