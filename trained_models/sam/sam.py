@@ -8,12 +8,12 @@ import torch
 import torchvision.transforms as transforms
 
 # print(os.listdir())
-os.chdir("SAM")
+os.chdir("trained_models/sam/SAM")
 # print(os.listdir())
 sys.path.append(".")
 sys.path.append("..")
 # sys.path.append("utils/common")
-# from datasets.augmentations import AgeTransformer
+from datasets.augmentations import AgeTransformer
 from models.psp import pSp
 from utils.common import tensor2im
 # os.chdir("../../../../")
