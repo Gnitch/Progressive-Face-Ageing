@@ -105,14 +105,14 @@ td,th {
   </table>
 
 <br>
+<a href="{% url 'app:cyclegan' person_detail.id %}">
+  <Button class="btn btn-info" style="margin-bottom: 80px !important;">Age Progressed Image</Button></a> 
+
     <!-- {% if person_detail.status == False %}
         <a href="{% url 'app:statusUpdate' person_detail.id %}">
             <Button class="btn btn-info mb-5">Found</Button></a>    
     {% endif %} -->
-    {% if user.is_authenticated %}
-        <a href="{% url 'app:cyclegan' person_detail.id %}">
-            <Button class="btn btn-info" style="margin-bottom: 80px !important;">Age Progressed Image</Button></a>    
-    {% endif %}    
+    <!-- {% if user.is_authenticated %} -->   
+    <!-- {% endif %}     -->
 </div>
-
 {% endblock %}

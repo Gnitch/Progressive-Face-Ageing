@@ -7,16 +7,21 @@ from PIL import Image
 import torch
 import torchvision.transforms as transforms
 
+# print(os.listdir())
+os.chdir("trained_models/sam/SAM")
+# print(os.listdir())
 sys.path.append(".")
 sys.path.append("..")
-sys.path.append("SAM/")
-
-from SAM.datasets.augmentations import AgeTransformer
-from SAM.utils.common import tensor2im
-from SAM.models.psp import pSp
+# sys.path.append("utils/common")
+# from datasets.augmentations import AgeTransformer
+from models.psp import pSp
+from utils.common import tensor2im
+# os.chdir("../../../../")
+# print(os.listdir())
 
 
 def ageProgressSam(img_path, adhar):
+
 
     EXPERIMENT_TYPE = 'ffhq_aging'
 

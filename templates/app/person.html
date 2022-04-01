@@ -156,7 +156,7 @@
     <h2>Information</h2>
   </div>
 
-  <form class="form" method="POST" action="{% url 'app:missingPersonForm' %}" enctype="multipart/form-data">
+  <form class="form" method="POST" action="{% url 'app:missingPersonForm' family_pk %}" enctype="multipart/form-data">
     {% csrf_token %}
     
     <h3>Missing Person Details</h3>

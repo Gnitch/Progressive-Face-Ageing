@@ -7,11 +7,12 @@ from app.models import Family, Missing
 from utils.choices import choices_gender, choices_state
 from utils.util import calculateAge
 from trained_models.cyclegan.cyclegan import ageProgressCyclegan
+from trained_models.sam.sam import ageProgressSam
 
 def home(request):     
     return render(request,'app/home.html')
 
-@login_required()
+# @login_required()
 def cyclegan(request, person_id):
     person_detail = get_object_or_404(Missing, pk=person_id)    
     if str(person_detail.adhar)+".png" not in os.listdir("media/AgeProgress/cyclegan") :
@@ -19,6 +20,15 @@ def cyclegan(request, person_id):
     
     context = {"person_detail":person_detail,"cycle_path":"/media/AgeProgress/cyclegan/"+str(person_detail.adhar)+".png"}    
     return render(request, 'app/age_progress.html', context)
+
+def cyclegan(request, person_id):
+    person_detail = get_object_or_404(Missing, pk=person_id)    
+    if str(person_detail.adhar)+".png" not in os.listdir("media/AgeProgress/sam") :
+        ageProgressSam(person_detail.img_person.url, person_detail.adhar)
+    
+    context = {"person_detail":person_detail,"cycle_path":"/media/AgeProgress/sam/"+str(person_detail.adhar)+".png"}    
+    return render(request, 'app/age_progress.html', context)
+
 
 def personDetail(request, person_id):   
     person_detail = get_object_or_404(Missing, pk=person_id)    
@@ -31,8 +41,9 @@ def personDetail(request, person_id):
                 "age":age}
     return render(request, 'app/person_deatil.html', context)
 
-def find(request):     
-    people_list = get_list_or_404(Missing, status=False)
+def find(request):         
+    # people_list = get_list_or_404(Missing, status=False)
+    people_list = list(Missing.objects.filter(status=False))
     context = {"people_list":people_list}    
     return render(request,'app/find.html',context)    
 
@@ -45,21 +56,22 @@ def searchPerson(request):
         print(context)
     return render(request,'app/find.html',context)    
 
-@login_required()
+# @login_required()
 def statusUpdate(request, person_id):
     person_detail = get_object_or_404(Missing, pk=person_id)    
     person_detail.status = True
     person_detail.save()
     return personDetail(request, person_id)
 
-@login_required()
-def familyForm(request):      
-    if request.method == "POST" :
+# @login_required()
+def familyForm(request):        
+    if request.method == "POST" :        
         family_form = FamilyForm(request.POST)
         if family_form.is_valid():
             form_obj = family_form.save()
-            request.session['family_pk'] = form_obj.id      
-            return render(request, 'app/person.html')
+            # request.session['family_pk'] = form_obj.id      
+            context = {"family_pk": form_obj.id}
+            return render(request, 'app/person.html', context)
 
         else :            
             errors = family_form.errors.as_data()             
@@ -72,24 +84,26 @@ def familyForm(request):
 
     return render(request,'app/family.html')
 
-@login_required()
-def missingPersonForm(request):       
+# @login_required()
+def missingPersonForm(request, family_pk):       
+    # print(request.session['family_pk'])        
     if request.method == "POST" :
+        # print("here")
         missing_form = MissingForm(request.POST, request.FILES)
         if missing_form.is_valid():
-            if 'family_pk' in request.session :
-                form_obj = missing_form.save(commit=False)
-                family_pk = request.session['family_pk']                
-                family_obj = get_object_or_404(Family, pk=family_pk)
-                del request.session['family_pk']                
-                form_obj.family_id = family_obj.id 
-                form_obj.user_id = request.user.id
-                form_obj.save()            
-                return render(request,'app/find.html')    
+            # if 'family_pk' in request.session :
+            form_obj = missing_form.save(commit=False)
+            # family_pk = request.session['family_pk']                
+            family_obj = get_object_or_404(Family, pk=family_pk)
+            # del request.session['family_pk']                
+            form_obj.family_id = family_obj.id 
+            form_obj.user_id = 1
+            form_obj.save()            
+            return render(request,'app/find.html')    
             
-            else :
-                context = {'error':'Some error occured with the session variable'}           
-                return render(request, 'app/person.html', context)                    
+            # else :
+            #     context = {'error':'Some error occured with the session variable'}           
+            #     return render(request, 'app/person.html', context)                    
 
         else :            
             errors = missing_form.errors.as_data()                         

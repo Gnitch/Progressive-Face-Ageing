@@ -13,7 +13,7 @@ urlpatterns = [
     path('cyclegan/<int:person_id>', views.cyclegan, name='cyclegan'),
     path('family-form/', views.familyForm, name='familyForm'),
     path('search-person/', views.searchPerson, name='searchPerson'),
-    path('missing-person-form/', views.missingPersonForm, name='missingPersonForm'),
+    path('missing-person-form/<int:family_pk>', views.missingPersonForm, name='missingPersonForm'),
 ]
 
 if settings.DEBUG:

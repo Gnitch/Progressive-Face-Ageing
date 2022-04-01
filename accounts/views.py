@@ -23,11 +23,11 @@ def register(request):
     return render(request, 'accounts/register.html')
 
 @redirect_if_auth('/')
-def signin(request):
-    if request.method == 'POST' :
+def signin(request):    
+    if request.method == 'POST' :    
         email = request.POST.get('email')
         password = request.POST.get('password')
-        user = authenticate(request, username=email, password=password)
+        user = authenticate(request, username=email, password=password)        
         if user is None:
             context = {'error':'Invalid Credentials'}           
             return render(request, 'accounts/login.html', context)
