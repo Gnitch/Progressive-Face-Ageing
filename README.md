@@ -3,7 +3,7 @@
 
 ## Results From CycleGan and SAM
 <pre>
- <b>Original Image                       CycleGan                                            SAM </b>
+ <b>Original Image                  CycleGan                                        SAM </b>
 </pre>
 
 ![](screenshots/image11.png)
