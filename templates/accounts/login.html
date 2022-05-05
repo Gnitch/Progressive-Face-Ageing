@@ -146,9 +146,9 @@
 </style>
 <div class="wrapper">
   <div class="headline">
-    <h1>Welcome !.</h1>
+    <h1>SIGN IN !.</h1>
   </div>
-  <form action="{% url 'accounts:login' %}" method="post">
+  <form action="{% url 'accounts:signin' %}" method="post">
     {% csrf_token %}
     <div class="signin">
       <div class="form-group">

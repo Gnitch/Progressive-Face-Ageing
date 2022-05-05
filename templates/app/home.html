@@ -1,4 +1,350 @@
 {% extends "../base.html" %}
 {% block content %}
+<style>
+    :root {
+  --primary-color: #333;
+  --secondary-color: #444;
+  --overlay-color: rgba(0, 0, 0, 0.7);
+}
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Catamaran', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  font-size: 1.1rem;
+  
+}
+
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.3;
+}
+
+a {
+  color: #444;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+
+  
+  
+
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  overflow: hidden;
+  padding: 0 2rem;
+}
+
+#twelve {
+  
+  position: relative;
+  color: rgb(49, 45, 45);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+  
+  
+}
+.section-a {
+  margin: 2rem 0;
+  
+}
+
+.section-a .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 3rem;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.info {
+  padding: 35px;
+}
+
+
+.section-a h1 {
+  font-size: 4rem;
+  color: var(--primary-color);
+}
+
+.section-a p {
+  margin: 1rem 0;
+  text-align: justify;
+}
+
+.section-b {
+  position: relative;
+  background: url('https://www.missingkids.org/content/ncmec/en/ourwork/impact/_jcr_content/footer/container_327452693/null/twovariantscolumn_co/par_1/image.img.jpg') no-repeat bottom center/cover;
+  height: 600px;
+}
+
+.section-b-inner {
+  color: #fff;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+  max-width: 860px;
+  padding: 5rem 0;
+}
+
+.section-b-inner h3 {
+  font-size: 2rem;
+}
+
+.section-b-inner h2 {
+  font-size: 5rem;
+  margin-top: 1rem;
+}
+
+.section-b-inner p {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  
+}
+
+
+
+/* // .form-control-wrap {
+// 	position: relative;
+// 	display: inline-block;
+// 	width: 100%;
+// } */
+
+
+.btn {
+  display: inline-block;
+  background: var(--primary-color);
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  border-radius: 30px;
+}
+
+.btn:hover {
+  background: var(--secondary-color);
+}
+
+.overlay {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+}
+
+.row-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.about-us {
+  margin: 30px 0;
+}
+
+.about-us-col {
+  height: 325px;
+  padding: 25px;
+  text-align: center;
+  background-color: grey;
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMjgwODE0IiB5MT0iLTAuMTAyMjA4IiB4Mj0iMC43MTkxODYiIHkyPSIxLjEwMjIwOCI+PHN0b3Agb2Zmc2V0PSItMjUlIiBzdG9wLWNvbG9yPSIjMTE1YjliIi8+PHN0b3Agb2Zmc2V0PSI1MCUiIHN0b3AtY29sb3I9IiMxMjkwZjgiLz48c3RvcCBvZmZzZXQ9IjEyNSUiIHN0b3AtY29sb3I9IiMxMTViOWIiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=');
+  background-size: 100%;
+  background-image: -moz-linear-gradient(290deg, #242a2e -25%, grey 50%,grey 125%);
+  background-image: -webkit-linear-gradient(290deg, #242a2e -25%, grey 50%, grey 125%);
+  background-image: linear-gradient(160deg, #242a2e -25%, grey 50%, grey 125%);
+  color: #fff;
+}
+
+a{
+  color: #fff;
+}
+.about-us-col .col-icon-wrapper {
+  min-height: 80px;
+}
+.about-us-col .col-title {
+  text-transform: uppercase;
+}
+.about-us-col .col-details {
+  text-align: justify;
+  margin-bottom: 25px;
+  min-height: 80px;
+}
+
+/* vertical spacing between columns */
+
+[class*="col-"] {
+  margin-bottom: 30px;
+}
+
+.content {
+  height: 100%;
+  padding: 20px 20px 10px;
+  color: #fff;
+}
+
+
+/* Demo backgrounds and styling*/
+
+
+@media (max-width: 700px) {
+  .section-a .container {
+  grid-template-columns: 1fr;
+  text-align: center;
+  }
+
+  
+
+  .section-a img {
+    width: 80%;
+    margin: auto;
+  }
+ 
+}
+
+</style>
+
+
+  <!-- Showcase -->
+  <br>
+<div class="home-main">
+  <section class="section-a">
+    <div class="container">
+      <div class="info">
+        <h2>Missing Children</h2>
+        <p>
+            Human trafficking is one of the most adverse social issues currently faced by countries worldwide.According to the United Nations Children’s Fund (UNICEF) and the Inter-Agency Coordination Group against Trafficking (ICAT), 28% of the identified victims of human trafficking globally are childrenChildren separated from their parents, such as refugees and migrants, are most vulnerable to trafficking.  The actual number of missing children is much more than these official statistics as only a limited number of cases are reported because of the fear of traffickers, lack of information, and mistrust of authorities.
+        </p>
+        <a href="#" class="btn">Add Missing Person</a>
+      </div>
+      <img src="http://3j8k6a37jqs62043ri3fuxf7-wpengine.netdna-ssl.com/wp-content/uploads/2020/07/apu-das.jpg" style="width:500px;height:400px" alt="" />
+    </div>
+  </section>
+
+
+
+  <!--start of columns-->
+  <div class="container">
+    
+    <div class="row row-flex">
+      <div class="col-md-3 col-sm-5 col-xs-12">
+        <div class="about-us-col">
+
+          <div class="col-icon-wrapper">
+            <img src="https://img.icons8.com/external-outline-icons-pause-08/2x/external-archery-management-outline-icons-pause-08.png" alt="">
+          </div>
+          <h3 class="col-title">mission</h3>
+          <div class="col-details">
+
+            <p>To Reunite Families.</p>
+            
+          </div>
+          
+      
+    </div>
+      </div>
+      <div class="col-md-3 col-sm-5 col-xs-12">
+        <div class="about-us-col">
+
+          <div class="col-icon-wrapper">
+            <img src="https://img.icons8.com/external-icongeek26-outline-icongeek26/2x/external-value-ads-icongeek26-outline-icongeek26.png" alt="">
+          </div>
+          <h3 class="col-title">Value</h3>
+          <div class="col-details">
+
+            <p> Add some info</p>
+          </div>
+          
+      
+    </div>
+      </div><div class="col-md-3 col-sm-5 col-xs-12">
+        <div class="about-us-col">
+
+          <div class="col-icon-wrapper">
+            <img src="https://img.icons8.com/wired/2x/donate.png" alt="">
+          </div>
+          <h3 class="col-title">Donate</h3>
+          <div class="col-details">
+
+            <p> <a href="url">Click here to donate</a></p>
+          </div>
+          
+      
+    </div>
+      </div><div class="col-md-3 col-sm-5 col-xs-12">
+        <div class="about-us-col">
+
+          <div class="col-icon-wrapper">
+            <img src="https://img.icons8.com/external-outline-juicy-fish/2x/external-helpline-avatars-outline-outline-juicy-fish.png" alt="">
+          </div>
+          <h3 class="col-title">Helpline</h3>
+          <div class="col-details">
+
+            <p><i class="fa fa-phone"> 8291713848</i></p>
+            <p><i class="fa fa-envelope"> info@missing.com</i></p>
+
+            
+          </div>
+          
+      
+    </div>
+    </div>
+    </div>
+    </div>
+    
+  <!--end of it-->
+
+
+  
+  <section id="twelve">
+    
+        <h3 class="text-2">Progressive Face Aging</h3>
+        <h2 class="text-5 mt-1">Helping you find you loved ones with a blend of Technology !</h2>
+        <p class="mt-1">
+          Age progression is the process of aesthetically rendering a given face image to present the effects of aging. It is often used in entertainment industry and forensics, e.g., forecasting facial appearances of young children when they grow up or generating contemporary photos for missing individuals. 
+
+        </p>
+      
+  </section>
+
+  <!-- Large Text -->
+  <section id="about" class="section-b">
+    <div class="overlay">
+      
+    </div>
+  </section>
+</div>
+  
+<script>
+$(function() {
+    const $gallery = $('.gallery a').simpleLightbox();
+  });
+TaxiNewsSig("sig");
+</script>
 {% endblock %}

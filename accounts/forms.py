@@ -2,9 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
-class UserRegisterForm(UserCreationForm):
-    email = forms.EmailField()
-    username = forms.CharField()        
+class UserRegisterForm(UserCreationForm):       
     error_messages = {
         'password_mismatch': "Passwords do not match!",
         'email_exist':'Email Exists!',

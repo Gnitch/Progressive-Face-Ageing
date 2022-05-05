@@ -1,0 +1,266 @@
+{%extends "../base.html"%} {% load static %} {% block content %}
+<style>
+  /* === Google Font ===*/
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap");
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+  /* === Variables Define ===*/
+  :root {
+    --primary-color: #3525d3;
+    --white-color: #fff;
+    --black-color: #3c4a57;
+    --light-gray: #e4e8ee;
+  }
+
+  /* === Body CSS ===*/
+  body {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  /* === Main Content CSS ===*/
+  .wrapper {
+    padding: 50px 25px 70px;
+    max-width: 668px;
+    width: 100%;
+    margin: auto;
+  }
+  .wrapper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("{% static 'bg-1.svg' %}");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    z-index: -1;
+  }
+  .wrapper .headline {
+    text-align: center;
+    padding-bottom: 48px;
+  }
+  .wrapper .headline h1 {
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 52px;
+  }
+
+  .wrapper .form-group {
+    margin-bottom: 15px;
+  }
+  .wrapper .form-group input {
+    display: block;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.1px;
+    padding: 11px 15px;
+    height: 48px;
+    border-radius: 5px;
+    color: var(--black-color);
+    border: 1px solid #e4e8ee;
+    box-shadow: none;
+    width: 100%;
+  }
+  .wrapper .form-group select {
+    display: block;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.1px;
+    padding: 11px 15px;
+    height: 48px;
+    border-radius: 5px;
+    color: var(--black-color);
+    border: 1px solid #e4e8ee;
+    box-shadow: none;
+    width: 100%;
+  }
+  .wrapper .form-group input:focus {
+    outline: none;
+  }
+  .wrapper .form-group select:focus {
+    outline: none;
+  }
+  .wrapper .form-group input::placeholder {
+    color: var(--black-color);
+    font-weight: 400;
+    font-size: 14px;
+  }
+  .wrapper .form-group select::placeholder {
+    color: var(--black-color);
+    font-weight: 400;
+    font-size: 14px;
+  }
+  .wrapper .btn {
+    width: 100%;
+    margin: 15px 0 30px;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 700;
+    padding: 12px 29px;
+    height: 48px;
+    text-transform: uppercase;
+    color: var(--white-color);
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    text-align: center;
+  }
+  .wrapper .form11 {
+    max-width: 350px;
+    width: 100%;
+    margin: auto;
+  }
+  .wrapper .btn:focus {
+    outline: none;
+  }
+  .wrapper .account-exist {
+    color: var(--black-color);
+    border-top: 1px solid var(--light-gray);
+    padding-top: 20px;
+    text-align: center;
+  }
+  .wrapper .account-exist a {
+    color: var(--primary-color);
+  }
+  @media (max-width: 1030px) {
+    .wrapper::before {
+      left: -25%;
+      min-height: 60vh;
+      height: 500px;
+    }
+  }
+  @media (max-width: 767px) {
+    .wrapper {
+      max-width: 550px;
+    }
+    .wrapper .headline h1 {
+      font-size: 22px;
+      line-height: 25px;
+    }
+  }
+</style>
+<div class="wrapper">
+  <div class="headline">
+    <br>
+    <h2>Information</h2>
+  </div>
+
+  <form class="form" method="POST" action="{% url 'app:missingPersonForm' family_pk %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <h3>Missing Person Details</h3>
+    <hr />
+    <div class="form11">
+      <div class="signup">
+        <div class="form-group">
+          <input
+            type="text"
+            name="firstname"
+            placeholder="First name"
+            required=""
+          />
+        </div>
+        <div class="form-group">
+          <input type="text" name="lastname" placeholder="Last name" required="" />
+        </div>
+        <div class="form-group1">
+          <label>Gender : </label>
+          <input type="radio" name="gender" value="male" /> Male
+          <input type="radio" name="gender" value="female" /> Female
+          <input type="radio" name="gender" value="other" /> Other
+        </div>
+        <br />
+        <div class="form-group">
+          <input type="number" name="height" placeholder="Height" />
+        </div>
+        <div class="form-group">
+          <input type="number" name="weight" placeholder="Weight" />
+        </div>
+        <div class="form-group">
+      
+          <select id="country-state" name="state">
+            <option value="none" selected disabled hidden>Select State</option>
+            <option value="AN">Andaman and Nicobar Islands</option>
+            <option value="AP">Andhra Pradesh</option>
+            <option value="AR">Arunachal Pradesh</option>
+            <option value="AS">Assam</option>
+            <option value="BR">Bihar</option>
+            <option value="CH">Chandigarh</option>
+            <option value="CT">Chhattisgarh</option>
+            <option value="DN">Dadra and Nagar Haveli</option>
+            <option value="DD">Daman and Diu</option>
+            <option value="DL">Delhi</option>
+            <option value="GA">Goa</option>
+            <option value="GJ">Gujarat</option>
+            <option value="HR">Haryana</option>
+            <option value="HP">Himachal Pradesh</option>
+            <option value="JK">Jammu and Kashmir</option>
+            <option value="JH">Jharkhand</option>
+            <option value="KA">Karnataka</option>
+            <option value="KL">Kerala</option>
+            <option value="LA">Ladakh</option>
+            <option value="LD">Lakshadweep</option>
+            <option value="MP">Madhya Pradesh</option>
+            <option value="MH">Maharashtra</option>
+            <option value="MN">Manipur</option>
+            <option value="ML">Meghalaya</option>
+            <option value="MZ">Mizoram</option>
+            <option value="NL">Nagaland</option>
+            <option value="OR">Odisha</option>
+            <option value="PY">Puducherry</option>
+            <option value="PB">Punjab</option>
+            <option value="RJ">Rajasthan</option>
+            <option value="SK">Sikkim</option>
+            <option value="TN">Tamil Nadu</option>
+            <option value="TG">Telangana</option>
+            <option value="TR">Tripura</option>
+            <option value="UP">Uttar Pradesh</option>
+            <option value="UT">Uttarakhand</option>
+            <option value="WB">West Bengal</option>
+        </select>
+        </div>
+        <div class="form-group">
+          <input type="text" name="city" placeholder="City" required="" />
+        </div>        
+        <div class="form-group">
+          <label>Date of birth:</label>
+          <input type="date" name="dob" required="" />
+        </div>
+        <div class="form-group">
+          <input
+            type="number"
+            name="adhar"
+            placeholder="AADHAR NUMBER"
+            pattern="[0-9]{12}"
+            title="Enter 12 digit adhar number"            
+            required=""
+          />
+        </div>
+        <div class="form-group">
+          <label>Missing date:</label>
+          <input type="date" name="last_sighted" required="" />
+        </div>
+        {% if error %}
+        <p style="color: red">{{error}}</p>
+        {% endif %}         
+      </div>
+      <div>
+      <label for="img">Add image :</label><br>
+      <input type="file" id="img" name="img_person" accept="image/*">
+      </div>
+    </div>
+    <button type="submit" class="btn">Submit</button>
+  </form>
+</div>
+{% endblock %}

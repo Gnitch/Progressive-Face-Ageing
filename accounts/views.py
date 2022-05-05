@@ -10,7 +10,7 @@ def register(request):
         form = UserRegisterForm(request.POST)
         if form.is_valid() == True:
             obj = form.save() 
-            login(request)          
+            signin(request)          
         else :            
             errors = form.errors.as_data()             
             errors = list(errors.values())        
@@ -23,22 +23,20 @@ def register(request):
     return render(request, 'accounts/register.html')
 
 @redirect_if_auth('/')
-def signin(request):
-    if request.method == 'POST' :
+def signin(request):    
+    if request.method == 'POST' :    
         email = request.POST.get('email')
         password = request.POST.get('password')
-        user = authenticate(request, username=email, password=password)
+        user = authenticate(request, username=email, password=password)        
         if user is None:
             context = {'error':'Invalid Credentials'}           
             return render(request, 'accounts/login.html', context)
         else :
             login(request, user)
-            print('Logged in')
-            HttpResponseRedirect('/')
+            return render(request, 'app/home.html')
 
     return render(request, 'accounts/login.html')
 
-def logout(request):
+def signout(request):
     logout(request)
-    print('Logged out')
-    return render(request, 'accounts/base.html')
+    return render(request, 'accounts/login.html')

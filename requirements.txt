@@ -1,2 +1,6 @@
 Django
 django-crispy-forms
+torch
+torchvision
+dominate
+visdom

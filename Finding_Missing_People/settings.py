@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-do8!cjy*ffd!580#gvo@dss7hag=(6_(r#=#hlm=*@sje)hhx%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['colab.research.google.com']
 
 
 # Application definition
@@ -46,7 +46,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -126,6 +126,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join ( BASE_DIR ,'static')
 ]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
+MEDIA_URL = '/media/'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -133,3 +137,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend','accounts.backends.EmailBackend']
+
+LOGIN_URL = '/auth/signin'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_URL = '/'
+
