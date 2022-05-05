@@ -3,7 +3,7 @@
 
 ## Results From CycleGan and SAM
 <pre>
- <b>Original Image              CycleGan                           SAM </b>
+ <b>Original Image              CycleGan                                SAM </b>
 </pre>
 
 ![](screenshots/image11.png)
@@ -12,3 +12,13 @@
 > We also developed a Django based web application to show case how our model can be used in a real world application. This web application reports and keeps a track of missing people. It also shows how people will look after a certain years of age progression.
 
 ![](screenshots/block.png)
+
+## Credits
+**SAM model and implementation:** <br>
+[https://github.com/yuval-alaluf/SAM](https://github.com/yuval-alaluf/SAM)
+<br><br>
+**CycleGAN and pix2pix in PyTorch:** <br>
+[https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)
+
+## Acknowledgments
+This code is inspired from [sam](https://github.com/yuval-alaluf/SAM) and [cyclegan](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)
