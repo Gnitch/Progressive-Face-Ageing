@@ -59,9 +59,19 @@ def ageProgressSam(img_path, adhar):
     original_image = Image.open(img_path[1:]).convert("RGB")
     original_image = original_image.resize((256, 256))
 
+    def run_alignment(image_path):
+        import dlib
+        from trained_models.sam.SAM.scripts.align_all_parallel import align_face
+        predictor = dlib.shape_predictor("trained_models/sam/shape_predictor_68_face_landmarks.dat")
+        aligned_image = align_face(filepath=image_path, predictor=predictor) 
+        print("Aligned image has shape: {}".format(aligned_image.size))
+        return aligned_image 
+
+    aligned_image = run_alignment(img_path[1:])
+    aligned_image = aligned_image.resize((256, 256))
 
     img_transforms = EXPERIMENT_ARGS['transform']
-    input_image = img_transforms(original_image)
+    input_image = img_transforms(aligned_image)
 
 
     target_ages = [30, 40, 50]
@@ -73,7 +83,7 @@ def ageProgressSam(img_path, adhar):
 
 
     # for each age transformed age, we'll concatenate the results to display them side-by-side
-    results = np.array(original_image)
+    results = np.array(aligned_image)
     for age_transformer in age_transformers:
         print(f"Running on target age: {age_transformer.target_age}")
         with torch.no_grad():

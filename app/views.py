@@ -15,8 +15,6 @@ def home(request):
 # @login_required()
 def cyclegan(request, person_id):
     person_detail = get_object_or_404(Missing, pk=person_id)    
-    print(os.listdir())
-
     if str(person_detail.adhar)+".png" not in os.listdir("media/AgeProgress/cyclegan") :
         ageProgressCyclegan(person_detail.img_person.url, person_detail.adhar)
     
@@ -27,8 +25,6 @@ def cyclegan(request, person_id):
                 "cycle_path":"/media/AgeProgress/cyclegan/"+str(person_detail.adhar)+".png",
                 "sam_path":"/media/AgeProgress/sam/"+str(person_detail.adhar)+".png"}    
     return render(request, 'app/age_progress.html', context)
-
-
 
 def personDetail(request, person_id):   
     person_detail = get_object_or_404(Missing, pk=person_id)    
