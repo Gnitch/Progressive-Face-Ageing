@@ -28,13 +28,6 @@ def cyclegan(request, person_id):
                 "sam_path":"/media/AgeProgress/sam/"+str(person_detail.adhar)+".png"}    
     return render(request, 'app/age_progress.html', context)
 
-# def samModel(request, person_id):
-#     person_detail = get_object_or_404(Missing, pk=person_id)    
-#     if str(person_detail.adhar)+".png" not in os.listdir("media/AgeProgress/sam") :
-#         ageProgressSam(person_detail.img_person.url, person_detail.adhar)
-    
-#     context = {"person_detail":person_detail,"cycle_path":"/media/AgeProgress/sam/"+str(person_detail.adhar)+".png"}    
-#     return render(request, 'app/age_progress.html', context)
 
 
 def personDetail(request, person_id):   
