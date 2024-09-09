@@ -21,4 +21,4 @@
 [https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)
 
 ## Acknowledgments
-This code is inspired from [sam](https://github.com/yuval-alaluf/SAM) and [cyclegan](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)
+This code is inspired from [cyclegan](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)
