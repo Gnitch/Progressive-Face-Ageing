@@ -1,4 +1,4 @@
-# Progressive Face Aging
+# Progressive Face Ageing
 > The main  objective of this project is to generate age progressed faces using Generative Adversarial Network (GAN).The  model which we are going to develop is  based on face aging using Cycle GAN’s and.With the help of our model one can accurately predict how the person  will look in the later years of his life.
 
 ## Results From CycleGan and SAM
